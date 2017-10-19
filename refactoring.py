@@ -5,10 +5,10 @@ import time
 # What can be fixed here with naming of functions and variables?
 # Why is good naming important?
 
-def func1(i):
-    return i ** 3
+def cube_function(num):
+    return num ** 3
 
-val1 = func1(3)
+val1 = cube_function(3)
 print('. cube of 3 =', val1)
 
 
@@ -17,9 +17,9 @@ print('. cube of 3 =', val1)
 # What makes a good DocString / Comment?
 
 def read_file_contents(file_path):
-    '''Reads file content'''
+    '''Reads file content of the file located at file_path and returns its contents'''
     with open(file_path, 'r', encoding='utf-8') as f:
-        # setting encoding to utf-8 while opening the file
+        # setting encoding to utf-8 while opening the file to ensure it works on windows
         return f.read()
 
 lyrics = read_file_contents('paradise.txt')
@@ -43,10 +43,10 @@ def count_words():
             word_count[word] = 0
         word_count[word] += 1
 
-        write_file_contents('paradise_word_count.json', json.dumps(word_count, indent=2, sort_keys=True))
+write_file_contents('paradise_word_count.json', json.dumps(word_count, indent=2, sort_keys=True))
 
-    most_repeated_word = max(word_count, key=lambda k: word_count[k])
-    print('. most repeated word in Paradise is', most_repeated_word)
+most_repeated_word = max(word_count, key=lambda k: word_count[k])
+print('. most repeated word in Paradise is', most_repeated_word)
 
 start = time.time()
 count_words()
@@ -60,17 +60,19 @@ print('  execution time =', end - start)
 # you will need to change every copy/pasted code in your code base.
 # How can you avoid repeating similar code? How will you rewrite this?
 
-print('. Paradise')
-with open('paradise.txt', 'r', encoding='utf-8') as f:
+def print_lines_with_40_chars(file_name):
+    with open('paradise.txt', 'r', encoding='utf-8') as f:
     paradise_lyrics_lines = f.readlines()
     for line in paradise_lyrics_lines:
         if len(line.strip()) > 40:
             print(' ', line.strip())
 
+print('. Paradise')
+print_lines_with_40_chars('paradise.txt')
 
-print('. Yellow')
-with open('yellow.txt', 'r', encoding='utf-8') as f:
-    yellow_lyrics_lines = f.readlines()
-    for line in yellow_lyrics_lines:
-        if len(line.strip()) > 40:
-            print(' ', line.strip())
+# print('. Yellow')
+# with open('yellow.txt', 'r', encoding='utf-8') as f:
+#     yellow_lyrics_lines = f.readlines()
+#     for line in yellow_lyrics_lines:
+#         if len(line.strip()) > 40:
+#             print(' ', line.strip())
